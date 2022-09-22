@@ -1,0 +1,54 @@
+basePath: /
+definitions:
+  main.Assembly:
+    properties:
+      type:
+        type: string
+    type: object
+  main.Release:
+    properties:
+      accepted:
+        type: boolean
+      assembly:
+        $ref: '#/definitions/main.Assembly'
+      name:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: aos-team-art@redhat.com
+    name: OpenShift Team ART
+    url: https://example.com/
+  description: This is a sample ART API server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Example ART API Server
+  version: "1.0"
+paths:
+  /releases/{name}:
+    get:
+      consumes:
+      - '*/*'
+      description: Get the info of specified release
+      parameters:
+      - description: Release name
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Release'
+      summary: Get release info
+      tags:
+      - root
+schemes:
+- http
+swagger: "2.0"

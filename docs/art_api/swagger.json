@@ -1,0 +1,81 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample ART API server.",
+        "title": "Example ART API Server",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "OpenShift Team ART",
+            "url": "https://example.com/",
+            "email": "aos-team-art@redhat.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/releases/{name}": {
+            "get": {
+                "description": "Get the info of specified release",
+                "consumes": [
+                    "*/*"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "root"
+                ],
+                "summary": "Get release info",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Release name",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.Release"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.Assembly": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.Release": {
+            "type": "object",
+            "properties": {
+                "accepted": {
+                    "type": "boolean"
+                },
+                "assembly": {
+                    "$ref": "#/definitions/main.Assembly"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
